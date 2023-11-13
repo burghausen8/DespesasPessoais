@@ -32,11 +32,15 @@ class MyHomePage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Card(
-              child: Text('Grafico'),
+            Container(
+              child: Card(child: Text('Grafico')),
             ),
-            Card(
-              child: Text('Lista de Transações'),
+            Column(
+              children: _transactions.map((tr) {
+                return Card(
+                  child: Text(tr.title),
+                );
+              }).toList(),
             )
           ],
         ));
