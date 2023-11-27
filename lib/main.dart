@@ -77,6 +77,26 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               }).toList(),
+            ),
+            Card(
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Titulo'),
+                    ),
+                    TextField(
+                        decoration: InputDecoration(labelText: 'Valor (R\$)')),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Nova Transação'),
+                      style: TextButton.styleFrom(primary: Colors.purple),
+                    ),
+                  ],
+                ),
+              ),
             )
           ],
         ));
