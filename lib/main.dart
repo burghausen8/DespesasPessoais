@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
                         margin:
                             EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                         child: Text(
-                          tr.value.toString(),
+                          'R\$ ${tr.value.toStringAsFixed(2)}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
