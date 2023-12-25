@@ -32,11 +32,10 @@ class TransactionForm extends StatelessWidget {
             TextField(
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 controller: valueController,
+                onSubmitted: (_) => _submitForm(),
                 decoration: InputDecoration(labelText: 'Valor (R\$)')),
             TextButton(
-              onPressed: () {
-                _submitForm();
-              },
+              onPressed: _submitForm,
               child: Text('Nova Transação'),
               style: TextButton.styleFrom(primary: Colors.purple),
             ),
