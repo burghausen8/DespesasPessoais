@@ -40,10 +40,34 @@ class _TransactionFormState extends State<TransactionForm> {
                 controller: valueController,
                 onSubmitted: (_) => _submitForm(),
                 decoration: InputDecoration(labelText: 'Valor (R\$)')),
-            TextButton(
-              onPressed: _submitForm,
-              child: Text('Nova Transação'),
-              style: TextButton.styleFrom(primary: Colors.purple),
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  Text('Nenhuma data selecionada!'),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Selecionar Data',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).primaryColor),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: _submitForm,
+                  child: Text('Nova Transação'),
+                  style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor,
+                      onPrimary: Theme.of(context).textTheme.button?.color),
+                ),
+              ],
             ),
           ],
         ),
