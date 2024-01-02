@@ -2,6 +2,7 @@ import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
+import 'chart_bar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
@@ -35,7 +36,10 @@ class Chart extends StatelessWidget {
       margin: EdgeInsets.all(20),
       child: Row(
         children: groupedTransactions.map((tr) {
-          return Text('${tr['day']}: ${tr['value']}');
+          return ChartBar(
+              label: tr['day'] as String,
+              value: tr['value'] as double,
+              percentage: 0);
         }).toList(),
       ),
     );
