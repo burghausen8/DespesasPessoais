@@ -7,6 +7,7 @@ import './components/transaction_list.dart';
 import 'package:expenses/models/transaction.dart';
 import './components/chart.dart';
 import 'dart:math';
+import 'dart:io';
 
 void main() => runApp(ExpensesApp());
 
@@ -92,8 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isLandScape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final _mediaQuery = MediaQuery.of(context);
+
+    bool _isLandScape = _mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text('Despesas Pessoais'),
@@ -114,9 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final availableHeight = MediaQuery.of(context).size.height -
+    final availableHeight = _mediaQuery.size.height -
         appBar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
+        _mediaQuery.padding.top;
 
     return Scaffold(
         appBar: appBar,
