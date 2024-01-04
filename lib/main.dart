@@ -36,9 +36,10 @@ class ExpensesApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 20,
+            fontSize: 20 * MediaQuery.of(context).textScaleFactor,
             fontWeight: FontWeight.bold,
           ),
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
       ),
     );
@@ -91,10 +92,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final appBar = AppBar(
       title: Text('Despesas Pessoais'),
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      titleTextStyle: TextStyle(
-        fontSize: 20 * MediaQuery.of(context).textScaleFactor,
-      ),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.add),
