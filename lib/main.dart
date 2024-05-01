@@ -1,5 +1,6 @@
 import 'package:expenses/components/chart.dart';
 import 'package:expenses/components/transaction_form.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './components/transaction_form.dart';
@@ -97,6 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     bool _isLandScape = _mediaQuery.orientation == Orientation.landscape;
 
+    final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
+    final chartList =
+        Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
+
     final appBar = AppBar(
       title: Text('Despesas Pessoais'),
       actions: <Widget>[
@@ -106,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         if (_isLandScape)
           IconButton(
-            icon: Icon(_showChart ? Icons.list : Icons.bar_chart),
+            icon: Icon(_showChart ? iconList : chartList),
             onPressed: () {
               setState(() {
                 _showChart = !_showChart;
@@ -122,33 +127,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
         appBar: appBar,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (_isLandScape)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Switch(
-                        value: _showChart,
-                        onChanged: (value) {
-                          setState(() {
-                            _showChart = value;
-                          });
-                        }),
-                    Text('Exibir grafico'),
-                  ],
-                ),
-              if (_showChart || !_isLandScape)
-                Container(
-                    height: availableHeight * (_isLandScape ? 0.7 : 0.3),
-                    child: Chart(_recentTransactions)),
-              if (!_showChart || !_isLandScape)
-                Container(
-                    height: availableHeight * 0.7,
-                    child: TransactionList(_transactions, _removeTransaction)),
-            ],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (_isLandScape)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Switch(
+                          value: _showChart,
+                          onChanged: (value) {
+                            setState(() {
+                              _showChart = value;
+                            });
+                          }),
+                      Text('Exibir grafico'),
+                    ],
+                  ),
+                if (_showChart || !_isLandScape)
+                  Container(
+                      height: availableHeight * (_isLandScape ? 0.7 : 0.3),
+                      child: Chart(_recentTransactions)),
+                if (!_showChart || !_isLandScape)
+                  Container(
+                      height: availableHeight * 0.7,
+                      child:
+                          TransactionList(_transactions, _removeTransaction)),
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
